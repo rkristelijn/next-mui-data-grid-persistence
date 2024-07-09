@@ -1,6 +1,8 @@
 'use client';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridColumnVisibilityModel, GridToolbar } from '@mui/x-data-grid';
+import { useLocalStorage } from '@uidotdev/usehooks';
+import { useEffect, useState } from 'react';
 
 const columns: GridColDef<(typeof rows)[number]>[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -46,9 +48,14 @@ const rows = [
 ];
 
 export default function DataGridDemo() {
+  const [columnVisibilityModel, setColumnVisibilityModel] = useLocalStorage<GridColumnVisibilityModel>('columnVisibilityModel', {
+    lastName: false,
+  });
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
+        columnVisibilityModel={columnVisibilityModel}
+        onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
         rows={rows}
         columns={columns}
         initialState={{
@@ -61,6 +68,7 @@ export default function DataGridDemo() {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
+        slots={{ toolbar: GridToolbar }}
       />
     </Box>
   );
