@@ -14,7 +14,7 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/material-nextjs": "latest",
-    "@mui/x-data-grid": "^7.9.0",
+    "@mui/x-data-grid-pro": "^7.9.0",
     "@uidotdev/usehooks": "^2.4.1",
     "next": "latest",
     "react": "latest",
