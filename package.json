@@ -9,25 +9,26 @@
     "init": "shx cp .env.example .env.local"
   },
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest",
-    "@mui/material-nextjs": "latest",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.16.0",
+    "@mui/material": "^5.16.0",
+    "@mui/material-nextjs": "^5.15.11",
     "@mui/x-data-grid-pro": "^7.9.0",
     "@uidotdev/usehooks": "^2.4.1",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "shx": "^0.3.4"
+    "next": "^14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
-    "typescript": "latest"
-  }
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.4",
+    "shx": "^0.3.4",
+    "typescript": "^5.5.3"
+  },
+  "repository": "https://github.com/rkristelijn/next-mui-data-grid-persistence"
 }

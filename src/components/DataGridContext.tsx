@@ -1,10 +1,15 @@
 'use client';
 
-import { GridColumnVisibilityModel } from '@mui/x-data-grid-pro';
+import { GridColumnVisibilityModel, GridFilterModel, GridLogicOperator } from '@mui/x-data-grid-pro';
 import { useLocalStorage } from '@uidotdev/usehooks';
 import { createContext, useContext, ReactNode } from 'react';
 
-type DataGridContextType = [GridColumnVisibilityModel, (model: GridColumnVisibilityModel) => void];
+type DataGridContextType = [
+  GridColumnVisibilityModel,
+  (model: GridColumnVisibilityModel) => void,
+  GridFilterModel,
+  (model: GridFilterModel) => void
+];
 
 /**
  * Context to manage the visibility model of the data grid columns.
@@ -21,9 +26,15 @@ const DataGridContext = createContext<DataGridContextType | undefined>(undefined
  * @param { ReactNode } props.children - The child components.
  * @returns { JSX.Element } The provider component.
  */
-export const DataGridProvider = (props: { name: string, children: ReactNode }) => {
+export const DataGridProvider = (props: { name: string; children: ReactNode }) => {
   const [columnVisibilityModel, setColumnVisibilityModel] = useLocalStorage<GridColumnVisibilityModel>(props.name ?? 'DataGrid', {});
-  const value: DataGridContextType = [columnVisibilityModel, setColumnVisibilityModel];
+  const [filterModel, setFilterModel] = useLocalStorage<GridFilterModel>('DataGridFilter', {
+    items: [],
+    logicOperator: 'and' as GridLogicOperator,
+    quickFilterValues: [],
+    quickFilterLogicOperator: 'and' as GridLogicOperator,
+  });
+  const value: DataGridContextType = [columnVisibilityModel, setColumnVisibilityModel, filterModel, setFilterModel];
   return <DataGridContext.Provider value={value} {...props} />;
 };
 

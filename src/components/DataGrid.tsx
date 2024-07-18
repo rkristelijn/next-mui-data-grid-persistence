@@ -7,13 +7,16 @@ import { useDataGridContext } from './DataGridContext';
 import { rows, columns } from './data';
 
 export const DataGrid = () => {
-  const [columnVisibilityModel, setColumnVisibilityModel] = useDataGridContext();
+  const [columnVisibilityModel, setColumnVisibilityModel, filterModel, setFilterModel] = useDataGridContext();
   return (
     <Box sx={{ height: '100vh', width: '100%' }}>
       <DataGridPro
         columnVisibilityModel={columnVisibilityModel}
         onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
-        onFilterModelChange={(newModel) => console.log(newModel)}
+        filterModel={filterModel}
+        onFilterModelChange={(newModel) => {
+          setFilterModel(newModel);
+        }}
         rows={rows}
         columns={columns}
         initialState={{
