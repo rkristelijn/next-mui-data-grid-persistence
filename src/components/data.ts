@@ -1,4 +1,4 @@
-import { GridColDef } from '@mui/x-data-grid-pro';
+import { GridColDef, GridLogicOperator } from '@mui/x-data-grid-pro';
 
 export const columns: GridColDef<(typeof rows)[number]>[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -82,3 +82,13 @@ export const rows = [
   { id: 48, lastName: 'Umber', firstName: 'Smalljon', age: 25 },
   { id: 49, lastName: '', firstName: 'Hodor', age: 40 },
 ];
+
+export const gridDefaults = {
+  filterModel: {
+    items: [],
+    logicOperator: 'and' as GridLogicOperator,
+    quickFilterValues: [],
+    quickFilterLogicOperator: 'and' as GridLogicOperator,
+  },
+  columnVisibilityModel: {},
+};

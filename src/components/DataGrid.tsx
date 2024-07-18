@@ -1,7 +1,8 @@
 'use client';
 
 import Box from '@mui/material/Box';
-import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
+import { DataGridPro } from '@mui/x-data-grid-pro';
+import { GridToolbar } from './GridToolbar';
 
 import { useDataGridContext } from './DataGridContext';
 import { rows, columns } from './data';
@@ -14,9 +15,7 @@ export const DataGrid = () => {
         columnVisibilityModel={columnVisibilityModel}
         onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
         filterModel={filterModel}
-        onFilterModelChange={(newModel) => {
-          setFilterModel(newModel);
-        }}
+        onFilterModelChange={(newModel) => setFilterModel(newModel)}
         rows={rows}
         columns={columns}
         initialState={{
