@@ -5,7 +5,8 @@
   "scripts": {
     "build": "next build",
     "start": "next dev",
-    "lint": "next lint"
+    "lint": "next lint",
+    "init": "shx cp .env.example .env.local"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -18,7 +19,8 @@
     "@uidotdev/usehooks": "^2.4.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "shx": "^0.3.4"
   },
   "devDependencies": {
     "@types/node": "latest",

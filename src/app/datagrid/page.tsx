@@ -1,7 +1,14 @@
-import DataGridDemo from '@/components/DataGrid';
+import { ClientOnly, DataGridProvider, DataGrid } from '@/components';
 
 const DataGridPage = () => {
-  return <DataGridDemo />;
+
+  return (
+    <ClientOnly>
+      <DataGridProvider name="MyDataGrid">
+        <DataGrid />
+      </DataGridProvider>
+    </ClientOnly>
+  );
 };
 
 export default DataGridPage;
