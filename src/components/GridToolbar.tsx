@@ -10,7 +10,7 @@ import { GridColumnIcon, type GridToolbarProps, type ToolbarPropsOverrides } fro
 
 import { useDataGridContext } from './DataGridContext';
 import { gridDefaults } from './data';
-import { FilterList } from '@mui/icons-material';
+import { Add, FilterList } from '@mui/icons-material';
 
 interface DataGridToolbarProps extends GridToolbarProps, ToolbarPropsOverrides {}
 
@@ -59,8 +59,8 @@ export const GridToolbar = ({ ...props }: DataGridToolbarProps): JSX.Element => 
       {Object.keys(columnVisibilityModel).map((key) => (
         <Chip
           icon={<GridColumnIcon />}
+          deleteIcon={<Add />}
           variant="outlined"
-          color="primary"
           key={key}
           label={key}
           onDelete={() => {
