@@ -5,7 +5,7 @@ Advanced state management for DataGridPro.
 Main objectives:
 
 - [x] persist the column selection
-- [z] persist sorting
+- [x] persist sorting
 - [x] persist filter (and ability to combine filters: this is [DataGridPro](https://mui.com/x/react-data-grid/filtering/#single-and-multi-filters) by default)
 - [x] persist column order also [DataGridPro](https://mui.com/x/react-data-grid)
 
