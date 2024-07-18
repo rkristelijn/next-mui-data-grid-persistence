@@ -9,8 +9,8 @@ import {
 import { GridColumnIcon, type GridToolbarProps, type ToolbarPropsOverrides } from '@mui/x-data-grid-pro';
 
 import { useDataGridContext } from './DataGridContext';
-import { gridDefaults } from './data';
-import { Add, FilterList } from '@mui/icons-material';
+import { columns as defaultColumns, gridDefaults } from './data';
+import { Add, ArrowDownward, ArrowUpward, FilterList, ViewArray } from '@mui/icons-material';
 
 interface DataGridToolbarProps extends GridToolbarProps, ToolbarPropsOverrides {}
 
@@ -18,24 +18,21 @@ interface DataGridToolbarProps extends GridToolbarProps, ToolbarPropsOverrides {
  * @see https://mui.com/x/react-data-grid/components/#toolbar for all the settings and tips
  */
 export const GridToolbar = ({ ...props }: DataGridToolbarProps): JSX.Element => {
-  const [columnVisibilityModel, setColumnVisibilityModel, filterModel, setFilterModel] = useDataGridContext();
+  const {
+    columnVisibilityModel,
+    setColumnVisibilityModel,
+    filterModel,
+    setFilterModel,
+    sortModel,
+    setSortModel,
+    columns,
+    setColumns,
+    handleResetFilters,
+    handleResetColumnSelection,
+    handleResetColumnWidthOrOrder,
+    deepEqual,
+  } = useDataGridContext();
 
-  const handleResetFilters = () => {
-    setFilterModel(gridDefaults.filterModel);
-  };
-
-  const handleResetColumnSelection = () => {
-    setColumnVisibilityModel(gridDefaults.columnVisibilityModel);
-  };
-
-  const deepEqual = (x: any, y: any): boolean => {
-    const ok = Object.keys,
-      tx = typeof x,
-      ty = typeof y;
-    return x && y && tx === 'object' && tx === ty
-      ? ok(x).length === ok(y).length && ok(x).every((key) => deepEqual(x[key], y[key]))
-      : x === y;
-  };
   return (
     <GridToolbarContainer>
       <GridToolbarColumnsButton />
@@ -55,7 +52,6 @@ export const GridToolbar = ({ ...props }: DataGridToolbarProps): JSX.Element => 
           }}
         />
       ))}
-      {/* {"__check__":false,"id":false,"firstName":false,"lastName":false,"age":false} */}
       {Object.keys(columnVisibilityModel).map((key) => (
         <Chip
           icon={<GridColumnIcon />}
@@ -70,6 +66,14 @@ export const GridToolbar = ({ ...props }: DataGridToolbarProps): JSX.Element => 
           }}
         />
       ))}
+      {sortModel.length > 0 && (
+        <Chip
+          icon={sortModel[0].sort === 'desc' ? <ArrowDownward /> : <ArrowUpward />}
+          variant="outlined"
+          label={sortModel[0].field}
+          onDelete={() => setSortModel(gridDefaults.sortModel)}
+        />
+      )}
       <Button
         variant="outlined"
         size="small"
@@ -87,6 +91,16 @@ export const GridToolbar = ({ ...props }: DataGridToolbarProps): JSX.Element => 
         startIcon={<GridColumnIcon />}
         disabled={deepEqual(columnVisibilityModel, gridDefaults.columnVisibilityModel)}
         aria-label="Reset column selection"
+      >
+        reset
+      </Button>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={handleResetColumnWidthOrOrder}
+        startIcon={<ViewArray />}
+        disabled={deepEqual(columns, defaultColumns)}
+        aria-label="Reset width or order"
       >
         reset
       </Button>
